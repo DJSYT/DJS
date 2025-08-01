@@ -1,2 +1,0 @@
-# DJS
-My Portfolio
