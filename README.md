@@ -1,4 +1,4 @@
-# MineCloud Portfolio Website
+# DJS Portfolio Website
 
 A modern, blue-themed anime-style portfolio showcasing DJS_YT, DJS_Vortex, and DJS_ANIMATION.  
 This portfolio highlights gaming, editing, and animation projects, plus offers a contact form connected via Discord Webhook.
