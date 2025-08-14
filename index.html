@@ -1,0 +1,671 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJS_YT • Anime Blue Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue-1:#0ea5e9; /* sky-500 */
+      --blue-2:#2563eb; /* indigo-600 */
+      --blue-3:#60a5fa; /* blue-400 */
+      --bg:#070a14;     /* deep navy */
+      --card:#0b1224;   /* card */
+      --glass:rgba(255,255,255,.08);
+      --text:#dbeafe;   /* light */
+      --muted:#93c5fd;
+      --glow: 0 0 20px rgba(96,165,250,.6), 0 0 40px rgba(14,165,233,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%;width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}/* ======= NAVBAR ======= */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:linear-gradient(180deg, rgba(7,10,20,.9), rgba(7,10,20,.55) 70%, transparent);
+  backdrop-filter:saturate(120%) blur(6px);
+  border-bottom:1px solid rgba(96,165,250,.15);
+}
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;gap:14px;padding:12px 18px}
+.brand{font-family:Orbitron, Poppins;font-weight:700;letter-spacing:.5px}
+.brand span{color:var(--blue-1);text-shadow:var(--glow)}
+.spider{filter:drop-shadow(0 0 4px rgba(59,130,246,.9))}
+.links{margin-left:auto;display:flex;gap:18px;align-items:center}
+.links a{color:var(--muted);text-decoration:none;font-weight:600;opacity:.9}
+.links a:hover{color:#fff;text-shadow:var(--glow)}
+.hamburger{display:none;cursor:pointer;border:1px solid rgba(96,165,250,.35);padding:8px;border-radius:10px}
+.hamburger span{display:block;width:24px;height:2px;background:#bcd7ff;margin:5px 0;border-radius:2px}
+
+/* mobile drawer */
+.drawer{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(11,18,36,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(96,165,250,.15);z-index:40}
+.drawer a{display:block;padding:14px 20px;border-top:1px solid rgba(96,165,250,.1);color:#e5efff;text-decoration:none}
+.drawer a:hover{background:rgba(96,165,250,.1)}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.video-grid iframe {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+/* ======= HERO ======= */
+.hero{position:relative;min-height:100vh;display:grid;place-items:center;padding-top:80px;overflow:hidden}
+.hero-content{position:relative;text-align:center;z-index:2;padding:0 16px}
+.title{font-size:clamp(36px,7vw,64px);margin:0 0 12px 0;font-family:Orbitron, Poppins;letter-spacing:1px}
+.title strong{color:#fff;text-shadow:0 0 40px rgba(59,130,246,.6), 0 0 80px rgba(14,165,233,.35)}
+.tagline{font-size:clamp(16px,2.8vw,22px);color:var(--muted);margin:0 0 22px 0}
+.cta{display:inline-block;padding:12px 22px;border-radius:12px;background:linear-gradient(90deg,var(--blue-2),var(--blue-1));color:white;text-decoration:none;font-weight:700;box-shadow:var(--glow)}
+.cta:hover{transform:translateY(-1px);filter:saturate(1.15)}
+
+/* hero animated background */
+#particles{position:absolute;inset:0;z-index:0}
+.orbit{position:absolute;border-radius:50%;filter:blur(24px);opacity:.35;animation:float 12s ease-in-out infinite}
+.o1{width:420px;height:420px;background:radial-gradient(circle at 30% 30%, #60a5fa, transparent 60%);top:-80px;left:-80px}
+.o2{width:560px;height:560px;background:radial-gradient(circle at 70% 70%, #22d3ee, transparent 60%);bottom:-120px;right:-120px;animation-delay:2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(16px)}}
+
+/* anime city silhouette */
+.city{position:absolute;bottom:-2px;left:0;right:0;z-index:1;opacity:.85}
+
+/* ======= SECTIONS ======= */
+section{padding:80px 20px;max-width:1100px;margin:0 auto;width:100%}
+h2.section-title{font-family:Orbitron, Poppins;font-size:clamp(28px,4.5vw,40px);margin:0 0 18px 0;text-shadow:var(--glow)}
+.card{background:var(--card);border:1px solid rgba(96,165,250,.15);border-radius:16px;padding:20px;box-shadow:var(--glow);width:100%;max-width:100%}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+.about-grid .card{background:linear-gradient(180deg, rgba(11,18,36,.85), rgba(11,18,36,.6));}
+.about-grid .card p{font-size:14px;line-height:1.6;margin:12px 0}
+.about-grid .card h3{font-size:18px;margin:0 0 12px 0}
+.about-list li{margin:8px 0;color:#cbe2ff;font-size:14px}
+
+/* PROJECTS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{position:relative;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;cursor:pointer}
+.project:hover{transform:scale(1.05);box-shadow:var(--glow)}
+.project img{width:100%;height:180px;object-fit:cover;border-radius:12px;transition:transform 0.3s ease}
+.project:hover img{transform:scale(1.1)}
+.project .meta{margin-top:10px}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);margin-right:6px;color:#b4d4ff;font-size:12px}
+.project a{color:#fff;text-decoration:none}
+.project a:hover{color:#93c5fd;text-shadow:var(--glow)}
+
+/* CONTACT */
+form label{display:block;margin:12px 0 6px 0;color:#cfe4ff}
+input,textarea{width:100%;max-width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(96,165,250,.25);background:rgba(255,255,255,.04);color:#e8f1ff;box-sizing:border-box}
+textarea{min-height:120px;resize:vertical}
+.btn{display:inline-block;margin-top:12px;padding:10px 18px;border-radius:12px;background:linear-gradient(90deg,var(--blue-2),var(--blue-1));color:white;border:none;font-weight:700;cursor:pointer;box-shadow:var(--glow)}
+.btn:hover{filter:saturate(1.15)}
+.status{margin-top:10px;color:#93c5fd}
+
+/* EXTRAS */
+.embed-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.socials a{margin-right:12px;color:#9ec8ff;text-decoration:none}
+.socials a:hover{text-shadow:var(--glow);color:#fff}
+
+
+
+/* ADMIN */
+.admin-box{display:grid;gap:12px}
+.hidden{display:none}
+.messages-grid{display:grid;gap:15px;margin-top:15px;max-height:500px;overflow-y:auto}
+.message-card{background:var(--card);border:1px solid rgba(96,165,250,.15);border-radius:12px;padding:16px;transition:transform 0.2s ease, box-shadow 0.2s ease}
+.message-card:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.message-date{font-size:12px;color:var(--blue-3);margin-bottom:8px;font-weight:600}
+.message-name{font-size:16px;color:#fff;margin-bottom:6px;font-weight:600}
+.message-email{font-size:14px;color:var(--muted);margin-bottom:12px}
+.message-text{font-size:14px;color:var(--text);line-height:1.5;margin-bottom:16px;word-wrap:break-word}
+.message-actions{display:flex;gap:8px;flex-wrap:wrap}
+.message-actions .btn{padding:6px 12px;font-size:12px;margin:0}
+
+/* Custom Confirmation Dialog */
+.confirm-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s ease}
+.confirm-overlay.show{opacity:1;visibility:visible}
+.confirm-dialog{background:var(--card);border:2px solid var(--blue-2);border-radius:16px;padding:24px;max-width:400px;width:90%;margin:20px;box-shadow:0 20px 40px rgba(0,0,0,0.5);transform:scale(0.8);transition:transform 0.3s ease}
+.confirm-overlay.show .confirm-dialog{transform:scale(1)}
+.confirm-title{color:#fff;font-size:18px;font-weight:600;margin-bottom:12px;text-align:center}
+.confirm-message{color:var(--text);font-size:14px;line-height:1.5;margin-bottom:20px;text-align:center}
+.confirm-actions{display:flex;gap:12px;justify-content:center}
+.confirm-btn{padding:10px 20px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s ease;min-width:80px}
+.confirm-btn.cancel{background:rgba(156,163,175,0.15);border:1px solid rgba(156,163,175,0.3);color:#9ca3af}
+.confirm-btn.cancel:hover{background:rgba(156,163,175,0.25);transform:translateY(-1px)}
+.confirm-btn.delete{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#ff6b6b}
+.confirm-btn.delete:hover{background:rgba(239,68,68,0.25);transform:translateY(-1px);box-shadow:0 4px 12px rgba(239,68,68,0.2)}
+
+/* Error and Success Messages */
+.error{color:#ff6b6b;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);padding:10px;border-radius:8px;margin:10px 0}
+.success{color:#51cf66;background:rgba(81,207,102,.1);border:1px solid rgba(81,207,102,.3);padding:10px;border-radius:8px;margin:10px 0}
+
+/* Loading states */
+.loading{opacity:0.6;pointer-events:none}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(96,165,250,.3);border-radius:50%;border-top-color:var(--blue-1);animation:spin 1s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* FOOTER */
+footer{padding:30px 16px;text-align:center;color:#9fc5ff;border-top:1px solid rgba(96,165,250,.15);background:linear-gradient(180deg, rgba(11,18,36,.5), rgba(11,18,36,.85))}
+
+/* RESPONSIVE */
+@media (max-width:1000px){
+  .about-grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .embed-grid{grid-template-columns:1fr}
+  section{padding:60px 15px}
+}
+@media (max-width:720px){
+  .links{display:none}
+  .hamburger{display:block;margin-left:auto}
+  .grid{grid-template-columns:1fr}
+  section{padding:40px 10px}
+  .nav{padding:12px 15px}
+  table{font-size:14px}
+  th,td{padding:8px;word-break:break-word}
+}
+
+  </style>
+</head>
+<body>
+  <!-- ======= NAVBAR ======= -->
+  <header>
+    <div class="nav">
+      <div class="brand">🕷️ <span>Web X</span> • <span>DJS_YT</span></div>
+      <nav class="links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#extras">Extras</a>
+        <a href="#admin">Admin</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open Menu" aria-controls="drawer" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="drawer" id="drawer">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#extras">Extras</a>
+      <a href="#admin">Admin</a>
+    </div>
+  </header>
+
+  <!-- ======= HERO ======= -->
+  <section id="home" class="hero" aria-label="Hero">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="orbit o1"></div>
+    <div class="orbit o2"></div>
+    <div class="hero-content">
+      <h1 class="title">Hi, I'm <strong>DJS_YT</strong></h1>
+      <p class="tagline">Owner of <b>MineCloud.gg</b> • Developer • Creator of <b>Nexus</b></p>
+      <a class="cta" href="#projects">View Projects</a>
+    </div>
+
+    <!-- Anime city silhouette -->
+    <svg class="city" height="140" viewBox="0 0 1440 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#1f3b87"/>
+          <stop offset="100%" stop-color="#0b1224"/>
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="140" fill="url(#g)"/>
+      <g fill="#0d1a33" opacity=".9">
+        <rect x="20" y="30" width="70" height="110"/>
+        <rect x="120" y="10" width="90" height="130"/>
+        <rect x="260" y="45" width="120" height="95"/>
+        <rect x="430" y="18" width="80" height="122"/>
+        <rect x="540" y="50" width="140" height="90"/>
+        <rect x="720" y="28" width="100" height="112"/>
+        <rect x="860" y="40" width="120" height="100"/>
+        <rect x="1020" y="20" width="90" height="120"/>
+        <rect x="1150" y="52" width="150" height="88"/>
+        <rect x="1330" y="12" width="80" height="128"/>
+      </g>
+    </svg>
+  </section>
+
+  <!-- ======= ABOUT ======= -->
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <div class="card">
+        <p>Owner of <b>MineCloud.gg</b>, a dev/coding-based Discord community offering Minecraft plugins, texture packs, Discord bots, websites, and more.</p>
+        <p>I run 3 YouTube channels: <b>DJS_YT</b> (gaming), <b>DJS_Vortex</b> (edits), <b>DJS_ANNIMEATION</b> (animations).</p>
+        <p>Independent creator working with friends — not a formal brand.</p>
+        <p>Currently building <b>Nexus</b>, a platform for custom Discord bots.</p>
+        <ul class="about-list">
+          <li>💻 Full‑stack web projects (HTML/CSS/JS)</li>
+          <li>🤖 Discord bot development</li>
+          <li>🎮 Minecraft plugins & assets</li>
+          <li>🎞️ Video edits & motion graphics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Quick Stats</h3>
+        <p><b>Location:</b> 🌏 India (remote-friendly)</p>
+        <p><b>Community:</b> MineCloud.gg</p>
+        <p><b>Currently:</b> Building <i>Nexus</i></p>
+        <p><b>Collab:</b> Open to commissions & partnerships</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= PROJECTS ======= -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid">
+      <!-- Project Card -->
+      <div class="card project">
+        <img src="https://i.ibb.co/dJmkt0Yw/93cc59c1d9e1c52ee2b239924dee3ccc.webp" alt="Minecraft Project"/>
+        <div class="meta">
+          <div class="tag">Minecraft</div>
+          <div class="tag">Plugin</div>
+          <h3>Economy & Claims Plugin</h3>
+          <p>Custom server economy with land claims and anti‑grief.</p>
+          <a href="#">View details →</a>
+        </div>
+      </div>
+      <div class="card project">
+        <img src="https://i.ibb.co/d0t0q10s/Nexus-bot-avatar.png" alt="Discord Bot"/>
+        <div class="meta">
+          <div class="tag">Bot</div>
+          <div class="tag">Discord</div>
+          <h3>Nexus Preview</h3>
+          <p>Modular command system, slash commands, dashboards.</p>
+          <a href="#">View details →</a>
+        </div>
+      </div>
+      <div class="card project">
+        <img src="https://i.ibb.co/dJmkt0Yw/93cc59c1d9e1c52ee2b239924dee3ccc.webp" alt="Website"/>
+        <div class="meta">
+          <div class="tag">Web</div>
+          <div class="tag">Design</div>
+          <h3>MineCloud.gg Site</h3>
+          <p>Portfolio + order system with modern UI and animations.</p>
+          <a href="https://djsyt.github.io/MineCloud/" target="_blank" rel="noopener">View details →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CONTACT ======= -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="card">
+      <form id="contactForm">
+        <label for="name">Name</label>
+        <input id="name" name="name" placeholder="Your name" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="your@email.com" required />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="How can I help?" required></textarea>
+        <button class="btn" type="submit">Send Message</button>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ======= EXTRAS ======= -->
+  <section id="extras">
+    <h2 class="section-title">Extras</h2>
+    <div class="card">
+      <h3 style="margin-top:0">Latest Videos</h3>
+      <div class="video-grid">
+        <iframe src="https://www.youtube.com/embed/GPHDQIquP9w" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/7f7i2P9Dmmc" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <h3>Discord</h3>
+      <p>
+        Join my community: <a href="https://discord.gg/GFsMRdjs" target="_blank" rel="noopener">discord.gg/MineCloud</a>
+      </p>
+      <div class="socials">
+        <a href="#" target="_blank" rel="noopener">YouTube: DJS_YT</a>
+        <a href="#" target="_blank" rel="noopener">YouTube: DJS_Vortex</a>
+        <a href="#" target="_blank" rel="noopener">YouTube: DJS_ANNIMEATION</a>
+        <a href="https://minecloud.gg" target="_blank" rel="noopener">MineCloud.gg</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ======= ADMIN ======= -->
+  <section id="admin">
+    <h2 class="section-title">Admin Panel</h2>
+    <div class="card">
+      <div class="admin-box">
+        <div>
+          <h3>Authentication</h3>
+          <div class="row">
+            <input id="adminPassword" type="password" placeholder="Admin password..." />
+            <button class="btn" onclick="authenticate()">Login</button>
+          </div>
+          <div id="authStatus" class="status"></div>
+        </div>
+        
+        <div id="adminContent" class="hidden">
+          <h3>Contact Messages</h3>
+          <div id="messageStatus" class="status"></div>
+          <button class="btn" onclick="loadMessages()" style="margin-bottom: 15px;">
+            <span id="loadingSpinner" class="spinner hidden"></span>
+            Refresh Messages
+          </button>
+          <div id="messagesContainer" class="messages-grid">
+            <!-- Messages will be loaded here as cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Confirmation Dialog -->
+  <div id="confirmOverlay" class="confirm-overlay">
+    <div class="confirm-dialog">
+      <div class="confirm-title">🗑️ Delete Message</div>
+      <div class="confirm-message">Are you sure you want to permanently delete this message? This action cannot be undone.</div>
+      <div class="confirm-actions">
+        <button class="confirm-btn cancel" onclick="hideConfirmDialog()">Cancel</button>
+        <button class="confirm-btn delete" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <p>&copy; <span id="year">2024</span> DJS_YT. Made with 💙 for the community.</p>
+  </footer>
+
+  <!-- ======= SCRIPTS ======= -->
+  <script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    hamburger.addEventListener('click',()=>{
+      const open = drawer.style.display === 'block';
+      drawer.style.display = open ? 'none' : 'block';
+      hamburger.setAttribute('aria-expanded', (!open).toString());
+    });
+    drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>drawer.style.display='none'));
+
+    // Footer year
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+
+    // Simple particle background (canvas)
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles=[];
+    function reset(){ w=canvas.width=canvas.offsetWidth; h=canvas.height=canvas.offsetHeight; particles=Array.from({length: Math.max(60, Math.floor(w/15))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,r:Math.random()*2+0.6})) }
+    function draw(){ ctx.clearRect(0,0,w,h); ctx.fillStyle='rgba(96,165,250,0.9)';
+      particles.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
+      // connect lines
+      for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+        const a=particles[i], b=particles[j]; const dx=a.x-b.x, dy=a.y-b.y, dist=Math.hypot(dx,dy); if(dist<90){ ctx.strokeStyle=`rgba(99,102,241,${1-dist/90})`; ctx.lineWidth=.4; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+      }
+      requestAnimationFrame(draw);
+    }
+    const ro = new ResizeObserver(reset); ro.observe(canvas); reset(); draw();
+
+
+
+    // Admin authentication
+    const ADMIN_PASS = 'Debasis10';
+    function authenticate() {
+      const password = document.getElementById('adminPassword').value;
+      const authStatus = document.getElementById('authStatus');
+      
+      if(password === ADMIN_PASS) {
+        document.getElementById('adminContent').classList.remove('hidden');
+        authStatus.innerHTML = '<div class="success">✓ Authentication successful</div>';
+        loadMessages();
+      } else {
+        authStatus.innerHTML = '<div class="error">✗ Invalid password</div>';
+      }
+    }
+
+    // Load messages function for admin
+    function loadMessages() {
+      const spinner = document.getElementById('loadingSpinner');
+      const messageStatus = document.getElementById('messageStatus');
+      
+      spinner.classList.remove('hidden');
+      messageStatus.textContent = 'Loading messages...';
+      
+      // Simulate loading from Firebase
+      setTimeout(() => {
+        const tbody = document.getElementById('messagesBody');
+        tbody.innerHTML = `
+          <tr>
+            <td>2024-08-14 10:30</td>
+            <td>John Doe</td>
+            <td>john@example.com</td>
+            <td>Hi, interested in your Minecraft plugins!</td>
+            <td><button class="btn" style="padding:5px 10px;font-size:12px;">Reply</button></td>
+          </tr>
+          <tr>
+            <td>2024-08-14 09:15</td>
+            <td>Alice Smith</td>
+            <td>alice@discord.com</td>
+            <td>Can you help with Discord bot development?</td>
+            <td><button class="btn" style="padding:5px 10px;font-size:12px;">Reply</button></td>
+          </tr>
+        `;
+        
+        spinner.classList.add('hidden');
+        messageStatus.innerHTML = '<div class="success">✓ Messages loaded successfully</div>';
+      }, 1500);
+    }
+  </script>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+    import { getFirestore, addDoc, collection, serverTimestamp, getDocs, query, orderBy, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6cFyB0xjro_gs8uw69Uqwx4YCzvx1Yts",
+      authDomain: "botonomy-83590.firebaseapp.com",
+      projectId: "botonomy-83590",
+      storageBucket: "botonomy-83590.firebasestorage.app",
+      messagingSenderId: "936937974527",
+      appId: "1:936937974527:web:36a2f78072065bac2a7aca",
+      measurementId: "G-KNF0F66HDZ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // Discord webhook URL
+    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1405437246655692800/Cndzs3etSnh7pYy54bOJ5cssANETn9mAgsMzlB2jKDbj19LudYANAPUA_5hwaZd9XH8w";
+
+    // Contact form submission handler
+    const contactForm = document.getElementById('contactForm');
+    const statusElement = document.getElementById('status');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitButton = contactForm.querySelector('.btn');
+      const originalText = submitButton.textContent;
+      
+      // Show loading state
+      submitButton.textContent = 'Sending...';
+      submitButton.classList.add('loading');
+      statusElement.textContent = 'Sending your message...';
+      
+      const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        timestamp: new Date().toISOString(),
+        createdAt: serverTimestamp()
+      };
+
+      try {
+        // Save to Firebase Firestore
+        await addDoc(collection(db, 'contacts'), formData);
+        
+        // Send to Discord webhook
+        const discordPayload = {
+          embeds: [{
+            title: "🎮 New Contact Message - DJS_YT Portfolio",
+            color: 0x60A5FA,
+            fields: [
+              { name: "👤 Name", value: formData.name, inline: true },
+              { name: "📧 Email", value: formData.email, inline: true },
+              { name: "📅 Date", value: new Date().toLocaleString(), inline: true },
+              { name: "💬 Message", value: formData.message, inline: false }
+            ],
+            footer: { text: "Portfolio Contact Form" },
+            timestamp: formData.timestamp
+          }]
+        };
+
+        const discordResponse = await fetch(DISCORD_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(discordPayload)
+        });
+
+        if (discordResponse.ok) {
+          statusElement.innerHTML = '<div class="success">✓ Message sent successfully! Saved to Firebase and Discord notification sent.</div>';
+        } else {
+          statusElement.innerHTML = '<div class="success">✓ Message saved to Firebase successfully! (Discord notification failed)</div>';
+        }
+        
+        // Reset form
+        contactForm.reset();
+        
+      } catch (error) {
+
+        statusElement.innerHTML = '<div class="error">✗ Failed to send message. Please try again or contact directly via Discord.</div>';
+      } finally {
+        // Reset button state
+        submitButton.textContent = originalText;
+        submitButton.classList.remove('loading');
+      }
+    });
+
+    // Admin message loading function
+    window.loadFirebaseMessages = async function() {
+      const spinner = document.getElementById('loadingSpinner');
+      const messageStatus = document.getElementById('messageStatus');
+      const messagesContainer = document.getElementById('messagesContainer');
+      
+      try {
+        spinner.classList.remove('hidden');
+        messageStatus.textContent = 'Loading messages from Firebase...';
+        
+        // Query messages from Firebase
+        const q = query(collection(db, 'contacts'), orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        
+        messagesContainer.innerHTML = '';
+        
+        if (querySnapshot.empty) {
+          messagesContainer.innerHTML = '<div style="text-align:center;color:#93c5fd;padding:20px;">No messages found</div>';
+        } else {
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const date = data.createdAt ? data.createdAt.toDate().toLocaleString() : data.timestamp || 'Unknown';
+            
+            const messageCard = document.createElement('div');
+            messageCard.className = 'message-card';
+            messageCard.innerHTML = `
+              <div class="message-date">${date}</div>
+              <div class="message-name">${data.name || 'N/A'}</div>
+              <div class="message-email">${data.email || 'N/A'}</div>
+              <div class="message-text">${data.message || 'N/A'}</div>
+              <div class="message-actions">
+                <button class="btn" onclick="window.open('mailto:${data.email}?subject=Re: Your Message&body=Hi ${data.name},%0A%0AThank you for your message!')">Reply</button>
+                <button class="btn" style="background:#ff6b6b;" onclick="deleteMessage('${doc.id}')">Delete</button>
+              </div>
+            `;
+            messagesContainer.appendChild(messageCard);
+          });
+        }
+        
+        messageStatus.innerHTML = '<div class="success">✓ Messages loaded from Firebase successfully</div>';
+        
+      } catch (error) {
+
+        messageStatus.innerHTML = '<div class="error">✗ Failed to load messages from Firebase</div>';
+        messagesContainer.innerHTML = '<div style="text-align:center;color:#ff6b6b;padding:20px;">Error loading messages</div>';
+      } finally {
+        spinner.classList.add('hidden');
+      }
+    };
+
+    // Custom confirmation dialog functions
+    let pendingDeleteId = null;
+    
+    window.showConfirmDialog = function(messageId) {
+      pendingDeleteId = messageId;
+      const overlay = document.getElementById('confirmOverlay');
+      overlay.classList.add('show');
+      
+      const confirmBtn = document.getElementById('confirmDeleteBtn');
+      confirmBtn.onclick = function() {
+        hideConfirmDialog();
+        performDelete(messageId);
+      };
+    };
+    
+    window.hideConfirmDialog = function() {
+      const overlay = document.getElementById('confirmOverlay');
+      overlay.classList.remove('show');
+      pendingDeleteId = null;
+    };
+    
+    // Close dialog when clicking outside
+    document.getElementById('confirmOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        hideConfirmDialog();
+      }
+    });
+    
+    async function performDelete(messageId) {
+      const messageStatus = document.getElementById('messageStatus');
+      
+      try {
+        // Delete from Firebase
+        await deleteDoc(doc(db, 'contacts', messageId));
+        
+        messageStatus.innerHTML = '<div class="success">✓ Message deleted successfully</div>';
+        
+        // Reload messages to refresh the cards
+        window.loadFirebaseMessages();
+        
+      } catch (error) {
+        messageStatus.innerHTML = '<div class="error">✗ Failed to delete message</div>';
+      }
+    }
+
+    // Delete message function (updated to use custom dialog)
+    window.deleteMessage = function(messageId) {
+      showConfirmDialog(messageId);
+    };
+
+    // Override the loadMessages function to use Firebase
+    window.loadMessages = window.loadFirebaseMessages;
+
+
+  </script>
+
+</body>
+</html>
